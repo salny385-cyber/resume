@@ -3,146 +3,464 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>钟灏睿 | Haorui Zhong — Resume</title>
+<title>钟灏睿 - 简历</title>
 <style>
   :root {
     --navy: #1F3864;
-    --navy-dark: #162B4E;
-    --blue-soft: #EAF2FA;
+    --navy-2: #2B4C7E;
+    --blue: #EAF2FA;
     --line: #D5E3F5;
-    --gray: #595959;
-    --muted: #8C9AAF;
+    --ink: #1a1a1a;
+    --muted: #5F6F85;
+    --soft: #8C9AAF;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; min-height: 100%; }
+  html { scroll-behavior: smooth; }
   body {
+    margin: 0;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 32px 18px;
     background:
-      radial-gradient(circle at 15% 10%, rgba(255,255,255,.9), transparent 38%),
-      linear-gradient(135deg, #F7FAFF 0%, #EAF2FA 55%, #DCE9F8 100%);
-    font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
-    color: #1a1a1a;
-  }
-  .card {
-    width: min(680px, 100%);
-    background: #fff;
-    border: 1px solid #DCE6F5;
-    border-radius: 20px;
-    box-shadow: 0 24px 70px rgba(31, 56, 100, .14);
-    padding: 48px 44px 34px;
-    text-align: center;
-  }
-  .avatar {
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center 18%;
-    border: 3px solid #fff;
-    box-shadow: 0 0 0 1px #D9E2F3, 0 8px 24px rgba(31, 56, 100, .14);
-    margin-bottom: 18px;
-  }
-  .eyebrow {
-    letter-spacing: .28em;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--muted);
-  }
-  h1 {
-    margin: 8px 0 0;
-    font-size: 34px;
-    line-height: 1.2;
-    color: var(--navy);
-  }
-  h1 span {
-    display: block;
-    margin-top: 6px;
+      radial-gradient(circle at 12% 0%, rgba(255,255,255,.95), transparent 34%),
+      linear-gradient(135deg, #F7FAFF 0%, #EAF2FA 52%, #DCE9F8 100%);
+    color: var(--ink);
+    font-family: "Microsoft YaHei", "Segoe UI", "PingFang SC", sans-serif;
     font-size: 15px;
-    font-weight: 400;
-    letter-spacing: .04em;
-    color: var(--gray);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
   }
-  .sub {
-    margin: 10px 0 26px;
-    font-size: 14px;
-    color: var(--gray);
-  }
-  .actions {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .btn {
+  .lang-toggle {
+    position: fixed;
+    top: 18px;
+    right: 22px;
+    z-index: 50;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 150px;
-    padding: 12px 22px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    transition: background .18s ease, transform .18s ease;
-  }
-  .btn.primary {
-    background: var(--navy);
-    color: #fff;
-    box-shadow: 0 8px 20px rgba(31, 56, 100, .20);
-  }
-  .btn.primary:hover { background: var(--navy-dark); transform: translateY(-1px); }
-  .btn.secondary {
-    background: var(--blue-soft);
+    min-width: 76px;
+    padding: 8px 14px;
+    border: 1px solid rgba(31, 56, 100, .18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .88);
     color: var(--navy);
-    border: 1px solid var(--line);
-  }
-  .btn.secondary:hover { background: #DFEBF8; transform: translateY(-1px); }
-  .pdfs {
-    margin-top: 20px;
+    font-family: inherit;
     font-size: 13px;
-    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: .02em;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(31, 56, 100, .10);
+    backdrop-filter: blur(8px);
+    transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
   }
-  .pdfs a {
+  .lang-toggle:hover {
+    background: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(31, 56, 100, .14);
+  }
+  .lang-toggle:focus-visible {
+    outline: 2px solid var(--navy-2);
+    outline-offset: 2px;
+  }
+  .page {
+    width: min(1200px, calc(100% - 48px));
+    margin: 48px auto;
+    padding: 46px 54px 54px;
+    background: #fff;
+    border: 1px solid #E1EAF7;
+    border-radius: 22px;
+    box-shadow: 0 30px 80px rgba(31, 56, 100, .16);
+  }
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 36px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-text { flex: 1; min-width: 0; }
+  h1 {
+    margin: 0 0 8px;
     color: var(--navy);
-    text-decoration: none;
-    border-bottom: 1px solid #C9D6E8;
+    font-size: 42px;
+    line-height: 1.1;
+    letter-spacing: .02em;
   }
-  .pdfs a:hover { border-bottom-color: var(--navy); }
-  .meta {
-    margin: 26px 0 0;
-    font-size: 12px;
-    color: #9AA7B8;
+  .headline {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.5;
   }
-  @media (max-width: 520px) {
-    .card { padding: 36px 22px 28px; }
-    h1 { font-size: 28px; }
-    .btn { width: 100%; }
+  .contact {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .photo {
+    flex: none;
+    width: 132px;
+    height: 165px;
+    object-fit: cover;
+    object-position: center 18%;
+    border: 1px solid #D9E2F3;
+    border-radius: 14px;
+    box-shadow: 0 12px 28px rgba(31, 56, 100, .14);
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(320px, 1fr);
+    gap: 46px;
+    margin-top: 8px;
+  }
+  .section { margin-top: 30px; }
+  .section:first-child { margin-top: 0; }
+  h2 {
+    margin: 0 0 12px;
+    padding-bottom: 7px;
+    border-bottom: 2px solid var(--navy);
+    color: var(--navy);
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: .02em;
+  }
+  .side h2 { font-size: 16px; }
+  p { margin: 0 0 10px; }
+  p:last-child { margin-bottom: 0; }
+  .entry { margin-top: 22px; }
+  .entry:first-of-type { margin-top: 0; }
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .entry-title {
+    color: #111;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .entry-date {
+    color: #6B7A90;
+    font-size: 13px;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .entry-meta {
+    margin: 3px 0 8px;
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  ul { margin: 0; padding-left: 20px; }
+  li { margin: 0 0 5px; }
+  li::marker { color: var(--navy); }
+  .skill { margin-bottom: 15px; }
+  .skill:last-child { margin-bottom: 0; }
+  .skill-label {
+    margin-bottom: 3px;
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .skill-text {
+    color: #333;
+    font-size: 13.5px;
+    line-height: 1.62;
+  }
+  .edu-title { font-size: 16px; font-weight: 700; }
+  .edu-sub {
+    margin: 3px 0 8px;
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+  .strength {
+    color: #333;
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+  .lang[hidden] { display: none !important; }
+  @media (max-width: 980px) {
+    .page {
+      width: min(100% - 32px, 820px);
+      margin: 40px auto;
+      padding: 34px 28px 38px;
+      border-radius: 18px;
+    }
+    h1 { font-size: 36px; }
+    .layout { grid-template-columns: 1fr; gap: 0; }
+    .side .section:first-child { margin-top: 30px; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 14px; }
+    .page {
+      width: calc(100% - 24px);
+      margin: 52px auto 24px;
+      padding: 28px 20px 32px;
+      border-radius: 16px;
+    }
+    .hero { gap: 18px; }
+    h1 { font-size: 30px; }
+    .headline { font-size: 14px; }
+    .contact { font-size: 13px; }
+    .photo { width: 96px; height: 120px; border-radius: 10px; }
+    .entry-head { flex-direction: column; gap: 2px; }
+    .entry-date { font-size: 12.5px; }
+    .lang-toggle { top: 12px; right: 12px; }
+  }
+  @media print {
+    @page { size: A4; margin: 10mm; }
+    body { background: #fff; }
+    .lang-toggle { display: none; }
+    .page {
+      width: auto;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .layout { grid-template-columns: 1fr; gap: 0; }
   }
 </style>
 </head>
 <body>
-<main class="card">
-  <img class="avatar" src="photo.jpg" alt="Haorui Zhong">
-  <div class="eyebrow">RESUME / CV</div>
-  <h1>钟灏睿 <span>Haorui Zhong</span></h1>
-  <p class="sub">Intelligent Manufacturing · Robotics · Mechatronics</p>
 
-  <div class="actions">
-    <a class="btn primary" href="zh.html">中文简历</a>
-    <a class="btn primary" href="en.html">English CV</a>
+<button class="lang-toggle" id="langToggle" type="button" aria-label="Switch to English">English</button>
+
+<div class="page">
+
+  <!-- Chinese -->
+  <div class="lang lang-zh">
+    <header class="hero">
+      <div class="hero-text">
+        <h1>钟灏睿</h1>
+        <p class="headline">智能制造工程本科｜机器人结构设计 / 视觉感知 / 机电控制</p>
+        <p class="contact">电话：13357128076　|　邮箱：256001412@nbu.edu.cn</p>
+        <p class="contact">求职方向：机器人 / 机电一体化研发实习</p>
+      </div>
+      <img class="photo" src="photo.jpg" alt="钟灏睿">
+    </header>
+
+    <div class="layout">
+      <main>
+        <section class="section">
+          <h2>个人概述</h2>
+          <p>智能制造工程本科在读，聚焦机器人结构设计、视觉感知、多传感器融合、机电控制与系统集成。具备机械建模、3D 打印、电路与线束、上位机开发、YOLO 视觉调试到服务器部署的端到端项目经验；独立完成充电桩查询平台与 OnlyOffice + Agent 协作系统，现作为队长主导工训大赛智能搬运物流小车的机械、视觉、电控与多传感器融合开发。</p>
+        </section>
+
+        <section class="section">
+          <h2>项目经历</h2>
+
+          <div class="entry">
+            <div class="entry-head"><span class="entry-title">工训大赛｜智能搬运物流小车</span><span class="entry-date">2026.07 - 至今</span></div>
+            <div class="entry-meta">队长｜机械结构 / 视觉感知 / 电控系统（2 人团队）</div>
+            <ul>
+              <li>作为 2 人小队队长，主导整车方案设计、任务拆解与进度管理，独立承担机械结构、视觉感知与电控系统开发，并协调队员完成文档与后勤保障。</li>
+              <li>完成四轮麦克纳姆轮全向底盘与车载三轴升降式机械臂的结构设计、3D 打印与装配调试；负责整机电源变换、控制电路接线、焊接与线束布置。</li>
+              <li>以 Jetson Nano 为上位机搭建控制架构，完成 3 个舵机与 7 个电机的协同驱动，结合麦克纳姆轮运动学解算实现底盘全向移动、机械臂三轴升降与抓取动作的任务级协同。</li>
+              <li>搭建多源感知链路：完成角度、扫码、视觉与 IMU 传感器的安装、标定与数据接入；基于关节角度传感器实现角度反馈与限位保护，基于扫码传感器完成工位与任务码识别，基于夹爪末端视觉与 YOLO 完成目标识别、位姿估计与视觉伺服对准。</li>
+              <li>融合 IMU 姿态解算、轮速与视觉信息进行航向纠偏与路径跟踪闭环，抑制累积误差；完成感知—决策—执行链路联调与参数整定，已具备完整运行能力，目前正备战省赛。</li>
+            </ul>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head"><span class="entry-title">校园空余充电桩查询公益网站</span><span class="entry-date">2026.09 - 至今</span></div>
+            <div class="entry-meta">独立开发与运维｜已上线运行</div>
+            <ul>
+              <li>独立完成校园空余充电桩查询平台的需求分析、HTML 前端、Python 数据采集服务与服务器部署运维，面向校内学生提供空余充电桩查询服务。</li>
+              <li>针对小程序数据接口设计采集方案：基于微信 Token 完成鉴权，在浏览器端模拟小程序运行环境，实现充电桩状态数据的批量采集、清洗、去重与增量更新。</li>
+              <li>使用 Docker 完成服务容器化部署，负责日志排查、访问数据分析与日常运维；平台已稳定运行数月，日均访问量约 2–3k。</li>
+              <li>基于访问数据与桩位状态分布持续优化数据更新频率、查询响应与页面体验。</li>
+            </ul>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head"><span class="entry-title">OnlyOffice + Agent 团队协作文档平台</span><span class="entry-date">2026.09 - 至今</span></div>
+            <div class="entry-meta">独立开发与运维｜4 人团队使用</div>
+            <ul>
+              <li>在私有服务器完成 OnlyOffice 文档服务的私有化部署，支持团队多人实时协作编辑，负责服务端环境、网络配置、账号与协作空间配置及日常运维。</li>
+              <li>通过 API 接入 DeepSeek Agent，构建支持网页读取、文档编辑与表格处理的工具调用链路，将 AI 助手嵌入文档协作流程。</li>
+              <li>面向 4 人团队完成服务可用性保障与使用支持，持续优化 Agent 交互与文档协作体验。</li>
+            </ul>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head"><span class="entry-title">仿生机器人｜蝴蝶扑翼飞行器</span><span class="entry-date">2025.09 - 2026.06</span></div>
+            <div class="entry-meta">挑战杯项目｜核心成员｜电控 / 程序 / 接线</div>
+            <ul>
+              <li>挑战杯项目：参与仿生机器人与蝴蝶扑翼飞行器的结构装配与样机调试，独立负责电控系统、程序编写与电路接线。</li>
+              <li>参与扑翼机构方案设计与样机迭代，完成电控器件选型、线路布置与飞行参数调试。</li>
+              <li>完成扑翼机构的执行器驱动、运动传递与整机联调，实现室内短距离持续扑翼飞行。</li>
+              <li>通过项目实践掌握 Arduino 编程、PWM 驱动、电路接线与机电联合调试方法。</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <aside class="side">
+        <section class="section">
+          <h2>核心技能</h2>
+          <div class="skill"><div class="skill-label">机械与结构</div><div class="skill-text">熟悉机械结构设计、三维建模、3D 打印与装配调试；具备麦克纳姆轮全向底盘、三轴升降机械臂、夹爪与传感器安装结构设计经验；熟练使用 SolidWorks、FreeCAD，熟悉打印件公差配合与结构轻量化。</div></div>
+          <div class="skill"><div class="skill-label">机电与电气</div><div class="skill-text">熟悉舵机 / 电机驱动、PWM 调速、电源变换与配电、控制电路接线与焊接；具备角度、扫码、IMU 等传感器接入与信号调理、线束布置、端子压接及整机电气联调经验；熟悉过流 / 欠压保护与故障排查。</div></div>
+          <div class="skill"><div class="skill-label">上位机与视觉</div><div class="skill-text">熟悉 Jetson Nano 上位机开发；掌握 C/C++、Python；具备多舵机 / 多电机协同控制、串口与总线通信、状态机与任务调度经验；熟悉 YOLO 目标检测、夹爪末端视觉、目标定位与位姿估计、视觉伺服、IMU 姿态解算与多传感器融合调试。</div></div>
+          <div class="skill"><div class="skill-label">Web 与运维</div><div class="skill-text">熟悉 HTML/CSS 前端、Python 数据采集与清洗、接口鉴权与增量更新、Docker 容器化部署、服务器运维与访问数据分析；具备 OnlyOffice 私有化部署与 DeepSeek Agent API 接入经验。</div></div>
+          <div class="skill"><div class="skill-label">语言能力</div><div class="skill-text">大学英语四级（CET-4）；可阅读英文技术文档、开源项目文档与器件手册。</div></div>
+        </section>
+
+        <section class="section">
+          <h2>教育经历</h2>
+          <div class="entry-head"><span class="edu-title">宁波大学</span><span class="entry-date">2025.09 - 2029.06</span></div>
+          <div class="edu-sub">智能制造工程｜本科</div>
+          <ul>
+            <li>专业排名 19/72（前 26%）；获校二级奖学金。</li>
+            <li>主修课程：机械设计基础、控制工程基础、智能传感与测试技术、智能传动与驱动、工业机器人、机器视觉、工业物联网技术等。</li>
+            <li>校园经历：班长；学生会部长；电脑维修社技术部部长，负责社团维修的核心技术支持。</li>
+            <li>语言能力：大学英语四级（CET-4）。</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>个人优势</h2>
+          <p class="strength">具备机械、电气、软件与视觉的交叉工程能力，能够独立完成机器人本体设计、3D 打印、电路与线束、嵌入式与上位机开发、YOLO 视觉调试、多传感器融合及服务器部署；在项目中长期负责整机落地，善于定位机械—电控—视觉—软件之间的耦合问题并推动方案迭代。对机器人系统集成、智能搬运与机电一体化方向有持续投入，具备较强的自学能力、工程推进与团队协作能力。</p>
+        </section>
+      </aside>
+    </div>
   </div>
 
-  <div class="pdfs">
-    <a href="Zhong-Haorui-Resume-CN.pdf">下载中文 PDF</a>
-    <span> · </span>
-    <a href="Haorui-Zhong-Resume-EN.pdf">Download English PDF</a>
+  <!-- English -->
+  <div class="lang lang-en" hidden>
+    <header class="hero">
+      <div class="hero-text">
+        <h1>Haorui Zhong</h1>
+        <p class="headline">B.Eng. in Intelligent Manufacturing | Robotics / Vision / Mechatronics</p>
+        <p class="contact">Phone: +86 133 5712 8076　|　Email: 256001412@nbu.edu.cn</p>
+        <p class="contact">Objective: Robotics / Mechatronics R&amp;D Internship</p>
+      </div>
+      <img class="photo" src="photo.jpg" alt="Haorui Zhong">
+    </header>
+
+    <div class="layout">
+      <main>
+        <section class="section">
+          <h2>Profile</h2>
+          <p>Undergraduate in Intelligent Manufacturing Engineering, focusing on robot structure design, visual perception, multi-sensor fusion, mechatronic control, and system integration. End-to-end project experience spanning mechanical modeling, 3D printing, circuit and harness design, host-computer development, YOLO-based vision debugging, and server deployment. Independently built a campus EV-charging availability platform and an OnlyOffice + Agent collaboration system; currently leading the mechanical, vision, electrical, and multi-sensor integration of an intelligent logistics robot for the Engineering Training Competition.</p>
+        </section>
+
+        <section class="section">
+          <h2>Project Experience</h2>
+
+          <div class="entry">
+            <div class="entry-head"><span class="entry-title">Engineering Training Competition | Intelligent Logistics Robot</span><span class="entry-date">Jul 2026 – Present</span></div>
+            <div class="entry-meta">Team Leader | Mechanical / Vision / Electrical Control (2-person team)</div>
+            <ul>
+              <li>Led a two-person team in overall vehicle design, task decomposition, and schedule management; independently owned the mechanical structure, visual perception, and electrical control, while coordinating documentation and logistics.</li>
+              <li>Designed, 3D-printed, assembled, and debugged a four-wheel Mecanum omnidirectional chassis and a vehicle-mounted three-axis lifting manipulator; responsible for power conversion, control-circuit wiring, soldering, and harness routing.</li>
+              <li>Built the control architecture on a Jetson Nano host computer; coordinated 3 servos and 7 motors with Mecanum-wheel kinematics to achieve omnidirectional motion and task-level coordination of lifting and grasping.</li>
+              <li>Developed a multi-source perception pipeline: installed, calibrated, and integrated angle, barcode/QR, vision, and IMU sensors; used joint-angle feedback for limit protection, barcode/QR for station and task recognition, and gripper-mounted vision with YOLO for object detection, pose estimation, and visual-servo alignment.</li>
+              <li>Fused IMU attitude, wheel-speed, and vision data for heading correction and closed-loop path tracking, suppressing accumulated drift; completed perception–decision–execution integration and parameter tuning, with full functionality operational and provincial competition preparation underway.</li>
+            </ul>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head"><span class="entry-title">Campus EV-Charging Availability Platform</span><span class="entry-date">Sep 2026 – Present</span></div>
+            <div class="entry-meta">Independent Developer &amp; Operator | Live</div>
+            <ul>
+              <li>Independently delivered the platform end to end, including requirements analysis, HTML front end, Python data-acquisition service, and server deployment/operations, providing campus users with EV-charging availability queries.</li>
+              <li>Designed a data-acquisition scheme for mini-program APIs: used WeChat tokens for authentication, emulated the mini-program runtime in a browser, and implemented batch acquisition, cleaning, deduplication, and incremental updates of charger-status data.</li>
+              <li>Containerized the service with Docker; handled log troubleshooting, access-data analysis, and daily operations. The platform has run stably for months with approximately 2–3k daily visits.</li>
+              <li>Continuously optimized update frequency, query response, and page experience based on access data and charger-status distribution.</li>
+            </ul>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head"><span class="entry-title">OnlyOffice + Agent Team Collaboration Platform</span><span class="entry-date">Sep 2026 – Present</span></div>
+            <div class="entry-meta">Independent Developer &amp; Operator | 4-person team</div>
+            <ul>
+              <li>Privately deployed OnlyOffice document services on a personal server, enabling real-time multi-user collaborative editing; responsible for the server environment, network configuration, account/workspace setup, and daily operations.</li>
+              <li>Integrated a DeepSeek Agent via API, building a tool-calling pipeline for web reading, document editing, and table processing, and embedding the AI assistant into the collaboration workflow.</li>
+              <li>Provided availability assurance and user support for a four-person team, continuously improving Agent interaction and document collaboration.</li>
+            </ul>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head"><span class="entry-title">Bionic Robot | Butterfly Flapping-Wing Aerial Vehicle</span><span class="entry-date">Sep 2025 – Jun 2026</span></div>
+            <div class="entry-meta">Challenge Cup Project | Core Member | Electronics / Programming / Wiring</div>
+            <ul>
+              <li>Challenge Cup project: contributed to the assembly and prototype debugging of a bionic robot and a butterfly-inspired flapping-wing aerial vehicle; independently responsible for the electronic control system, programming, and circuit wiring.</li>
+              <li>Participated in the design and prototype iteration of the flapping mechanism; completed electronic component selection, wiring layout, and flight-parameter tuning.</li>
+              <li>Achieved actuator driving, motion transmission, and whole-system integration, realizing sustained short-distance indoor flapping flight.</li>
+              <li>Gained hands-on experience in Arduino programming, PWM driving, circuit wiring, and electromechanical debugging.</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <aside class="side">
+        <section class="section">
+          <h2>Core Skills</h2>
+          <div class="skill"><div class="skill-label">Mechanical &amp; Structural</div><div class="skill-text">Mechanical structure design, 3D modeling, 3D printing, assembly and debugging; experience in Mecanum-wheel omnidirectional chassis, three-axis lifting manipulators, gripper and sensor mounting structures; proficient in SolidWorks and FreeCAD; familiar with tolerances/fits for printed parts and lightweight structural design.</div></div>
+          <div class="skill"><div class="skill-label">Mechatronics &amp; Electrical</div><div class="skill-text">Servo/motor driving, PWM speed control, power conversion and distribution, control-circuit wiring and soldering; sensor integration and signal conditioning for angle, barcode/QR, and IMU sensors; harness routing, terminal crimping, whole-machine electrical integration, overcurrent/undervoltage protection, and troubleshooting.</div></div>
+          <div class="skill"><div class="skill-label">Host Computer &amp; Vision</div><div class="skill-text">Jetson Nano host-computer development; C/C++, Python; multi-servo/multi-motor coordinated control, serial and bus communication, state machines, and task scheduling; YOLO object detection, gripper-mounted vision, target localization and pose estimation, visual servoing, IMU attitude estimation, and multi-sensor fusion.</div></div>
+          <div class="skill"><div class="skill-label">Web &amp; DevOps</div><div class="skill-text">HTML/CSS front end, Python data acquisition and cleaning, API authentication and incremental updates, Docker containerization, server operations, and access-data analysis; OnlyOffice private deployment and DeepSeek Agent API integration.</div></div>
+          <div class="skill"><div class="skill-label">Languages</div><div class="skill-text">CET-4; able to read English technical documentation, open-source project docs, and device datasheets.</div></div>
+        </section>
+
+        <section class="section">
+          <h2>Education</h2>
+          <div class="entry-head"><span class="edu-title">Ningbo University</span><span class="entry-date">Sep 2025 – Jun 2029</span></div>
+          <div class="edu-sub">Intelligent Manufacturing Engineering | B.Eng.</div>
+          <ul>
+            <li>Major ranking: 19/72 (top 26%); Second-Class University Scholarship.</li>
+            <li>Core courses: Fundamentals of Mechanical Design, Fundamentals of Control Engineering, Intelligent Sensing and Testing Technology, Intelligent Transmission and Actuation, Industrial Robotics, Machine Vision, and Industrial IoT Technology.</li>
+            <li>Campus: Class Monitor; Minister in the Student Union; Technical Minister of the Computer Repair Club, responsible for core technical support.</li>
+            <li>Language: CET-4.</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2>Strengths</h2>
+          <p class="strength">Cross-disciplinary engineering capability across mechanical, electrical, software, and vision. Able to independently deliver robot body design, 3D printing, circuits and harnesses, embedded/host-computer development, YOLO vision debugging, multi-sensor fusion, and server deployment. Experienced in taking robot projects from concept to whole-machine integration, with a strong ability to diagnose coupling issues across mechanics, electronics, vision, and software and drive design iterations. Deeply interested in robot system integration, intelligent logistics, and mechatronics; strong self-learning, engineering execution, and teamwork skills.</p>
+        </section>
+      </aside>
+    </div>
   </div>
 
-  <p class="meta">Ningbo University · 2025–2029</p>
-</main>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('langToggle');
+  var zh = document.querySelector('.lang-zh');
+  var en = document.querySelector('.lang-en');
+  var titles = { zh: '钟灏睿 - 简历', en: 'Haorui Zhong - Resume' };
+
+  function setLang(lang, updateUrl) {
+    var isEn = lang === 'en';
+    zh.hidden = isEn;
+    en.hidden = !isEn;
+    btn.textContent = isEn ? '中文' : 'English';
+    btn.setAttribute('aria-label', isEn ? '切换到中文' : 'Switch to English');
+    document.documentElement.lang = isEn ? 'en' : 'zh-CN';
+    document.title = titles[isEn ? 'en' : 'zh'];
+    if (updateUrl) {
+      var url = new URL(window.location.href);
+      if (isEn) {
+        url.searchParams.set('lang', 'en');
+      } else {
+        url.searchParams.delete('lang');
+      }
+      window.history.replaceState(null, '', url);
+    }
+  }
+
+  var initial = new URLSearchParams(window.location.search).get('lang') === 'en' ? 'en' : 'zh';
+  setLang(initial, false);
+  btn.addEventListener('click', function () {
+    setLang(zh.hidden ? 'zh' : 'en', true);
+  });
+})();
+</script>
 </body>
 </html>
